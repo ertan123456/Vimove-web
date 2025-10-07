@@ -9,6 +9,12 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import RedirectResponse
+
+@app.get("/start")
+def start_get_redirect():
+    # /start URL’sine girenleri yeni web-oyun sayfasına yönlendir
+    return RedirectResponse(url="/static/game/game.html", status_code=302)
 
 
 app = FastAPI(title="NöroHareket App")
