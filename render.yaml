@@ -1,9 +1,8 @@
 services:
   - type: web
-    name: vimove
-    env: python
-    plan: free
+    name: vimove-web
+    runtime: python           # ← env: python yerine runtime: python
+    plan: free                # opsiyonel
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    autoDeploy: true
     healthCheckPath: /health
