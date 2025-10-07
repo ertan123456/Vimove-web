@@ -6,37 +6,55 @@
   <title>ViMove – Oyun</title>
   <style>
     body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#0b0d10; color:#eee; }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 16px; }
-    .row { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px; }
+    .grid { display:grid; grid-template-columns: 700px 1fr; gap:16px; }
     video, canvas { width: 640px; height: 480px; background:#111; border-radius: 12px; display:block; }
-    .panel { flex:1; min-width:260px; background:#111; border:1px solid #222; border-radius:12px; padding:12px; }
+    .panel { background:#111; border:1px solid #222; border-radius:12px; padding:14px; }
     button { padding:10px 14px; border-radius:10px; border:1px solid #333; background:#1b1f24; color:#fff; cursor:pointer; }
     .ok { color:#82f58f; } .warn { color:#ffde7a; } .bad { color:#ff7a7a; }
     .pill { display:inline-block; padding:4px 8px; border:1px solid #333; border-radius:999px; margin-right:6px; }
+    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .progress { height:10px; background:#222; border-radius:8px; overflow:hidden; }
+    .bar { height:100%; width:0%; background:#3fa7ff; transition:width .2s; }
+    .muted { color:#bbb; font-size: 13px; }
+    .list { margin:0; padding-left:16px; }
+    .list li.done { color:#82f58f; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>ViMove – Kameralı Oyun (Web)</h1>
-    <p>“Başlat”a basınca kamera izni isteyecek. <b>HTTPS</b> üzerinde çalıştırın (Render varsayılan HTTPS sunar).</p>
-    <div class="row">
+    <div class="row" style="margin-bottom:10px">
+      <button id="btnStart">Kamerayı Başlat</button>
+      <span id="status" class="pill warn">Hazır</span>
+      <span id="fps" class="pill">FPS: –</span>
+    </div>
+
+    <div class="grid">
       <div>
-        <video id="video" playsinline autoplay muted></video>
+        <video id="video" playsinline muted></video>
         <canvas id="overlay"></canvas>
-        <div style="margin-top:10px; display:flex; gap:8px;">
-          <button id="btnStart">Başlat</button>
-          <span id="status" class="pill warn">Hazır</span>
-          <span id="fps" class="pill">FPS: –</span>
-        </div>
       </div>
+
       <div class="panel">
-        <h3>Durum</h3>
-        <p id="info">Ellerini kadraja getir.</p>
-        <ul>
-          <li>Sol el açık/kapalı: <b id="Lstate">–</b></li>
-          <li>Sağ el açık/kapalı: <b id="Rstate">–</b></li>
-        </ul>
-        <p class="warn">Not: Açık/kapalı algısı işaret parmağı ucu (LM 8) ile bilek (LM 0) mesafesine göre yapılır.</p>
+        <h3 style="margin:6px 0 8px">Egzersiz Planı</h3>
+        <p class="muted">Hedefe ulaşınca otomatik sonraki egzersize geçilir.</p>
+
+        <div style="margin:10px 0 12px">
+          <div><b>Şu an:</b> <span id="exerciseName">–</span></div>
+          <div class="progress" style="margin-top:8px"><div id="bar" class="bar"></div></div>
+          <div class="row" style="margin-top:8px">
+            <span>Tekrar: <b id="reps">0</b>/<b id="target">0</b></span>
+            <button id="btnReset">Sıfırla</button>
+          </div>
+          <div id="hint" class="muted" style="margin-top:6px">İpucu: “açık → kapalı” hareketi 1 tekrar sayılır.</div>
+        </div>
+
+        <ul id="planList" class="list"></ul>
+        <hr style="border-color:#222; margin:12px 0">
+        <div><b>Sol el:</b> <span id="Lstate">–</span> &nbsp; <b>Sağ el:</b> <span id="Rstate">–</span></div>
+        <div id="info" style="margin-top:8px">“Kamerayı Başlat” butonuna bas ve izni ver.</div>
+        <div id="diag" class="muted" style="white-space:pre-wrap; margin-top:6px"></div>
       </div>
     </div>
   </div>
