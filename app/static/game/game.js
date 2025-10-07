@@ -40,8 +40,8 @@ const DIZ_KALKMA_ACI = 150;  // üstüne çıkarsa dikleşme
 
 // ------- Egzersiz Planı (senin listedeki sıralama) -------
 const PLAN = [
-  { ad: "Right Hand Open - Close", hedef: 10 },
-  { ad: "Left Hand Open - Close",  hedef: 10 },
+  { ad: "Left Hand Open - Close", hedef: 10 },
+  { ad: "Right Hand Open - Close",  hedef: 10 },
   { ad: "Mouth Open - Close",      hedef: 5  },
   { ad: "Right Eye Blink",         hedef: 5  },
   { ad: "Left Eye Blink",          hedef: 5  },
