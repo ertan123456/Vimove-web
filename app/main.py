@@ -14,9 +14,9 @@ from fastapi.responses import RedirectResponse
 
 app = FastAPI(title="NöroHareket App")
 
-@app.get("/start")
-def start_get_redirect():
-    # /start URL’sine girenleri yeni web-oyun sayfasına yönlendir
+@app.api_route("/start", methods=["GET", "POST"])
+def start_redirect():
+    # Formdan POST gelse bile, doğrudan web oyun sayfasına at.
     return RedirectResponse(url="/static/game/game.html", status_code=302)
 
 # --- KLASÖR YOLLARI DOĞRU AYARLANIYOR ---
