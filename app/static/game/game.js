@@ -213,37 +213,39 @@ function nextExerciseAuto() {
 
 // ---------------- MediaPipe init ----------------
 async function initModels() {
-  const vision = await FilesetResolver.forVisionTasks(
-    "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.8/wasm"
-  );
+const vision = await FilesetResolver.forVisionTasks(
+  "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.8/wasm"
+);
 
-  handLandmarker = await HandLandmarker.createFromOptions(vision, {
-    baseOptions: {
-      modelAssetPath:
-        "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task"
-    },
-    numHands: 2,
-    runningMode: "VIDEO"
-  });
+// ✨ DOĞRU model yolları (latest kanalı):
+handLandmarker = await HandLandmarker.createFromOptions(vision, {
+  baseOptions: {
+    modelAssetPath:
+      "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task"
+  },
+  numHands: 2,
+  runningMode: "VIDEO"
+});
 
-  faceLandmarker = await FaceLandmarker.createFromOptions(vision, {
-    baseOptions: {
-      modelAssetPath:
-        "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task"
-    },
-    outputFaceBlendshapes: false,
-    runningMode: "VIDEO",
-    numFaces: 1
-  });
+faceLandmarker = await FaceLandmarker.createFromOptions(vision, {
+  baseOptions: {
+    modelAssetPath:
+      "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task"
+  },
+  outputFaceBlendshapes: false,
+  runningMode: "VIDEO",
+  numFaces: 1
+});
 
-  poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
-    baseOptions: {
-      modelAssetPath:
-        "https://storage.googleapis.com/mediapipe-models/pose_landmarker_full/pose_landmarker_full/float16/1/pose_landmarker_full.task"
-    },
-    runningMode: "VIDEO",
-    numPoses: 1
-  });
+poseLandmarker = await PoseLandmarker.createFromOptions(vision, {
+  baseOptions: {
+    modelAssetPath:
+      "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_full/float16/latest/pose_landmarker_full.task"
+  },
+  runningMode: "VIDEO",
+  numPoses: 1
+});
+
 }
 
 // ---------------- Kamera ----------------
