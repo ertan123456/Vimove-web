@@ -1,0 +1,102 @@
+:root{--bg:#0f1115;--fg:#e8e8e8;--muted:#9aa0a6;--card:#171a21;--acc:#7aa2f7;--danger:#ef4444}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--fg)}
+.container{max-width:720px;margin:40px auto;padding:0 16px}
+h1{margin:0 0 16px}
+.muted{color:var(--muted)}
+.card{background:var(--card);padding:16px;border-radius:14px;box-shadow:0 2px 10px rgba(0,0,0,.15);margin:16px 0;display:grid;gap:12px}
+.card.small{font-size:14px;white-space:pre-wrap}
+label{display:grid;gap:6px}
+input,select,button{padding:10px 12px;border-radius:10px;border:1px solid #2a2f3a;background:#0e1117;color:var(--fg)}
+button{cursor:pointer;background:var(--acc);border:none}
+button.danger{background:var(--danger);color:#fff}
+.status{margin:12px 0;padding:12px;border-radius:10px;background:#12161f;border:1px dashed #293043}
+.status.running{border-color:#1e3a8a}
+.link{color:#9abaff;text-decoration:none}
+/* --- ViMove hero & küçük arayüz iyileştirmeleri --- */
+.hero .title{
+  font-size: clamp(22px, 3vw, 28px);
+  margin: 0 0 6px;
+  letter-spacing: 0.3px;
+}
+.hero p{
+  margin: 6px 0 10px;
+  line-height: 1.6;
+  color: var(--fg);
+  opacity: .95;
+}
+.contacts{
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.contacts a{
+  color: #b9cdfd;
+  text-decoration: none;
+}
+.contacts a:hover{
+  text-decoration: underline;
+}
+
+/* Form kartını biraz daha modern göster */
+.card label{
+  font-size: 14px;
+}
+input, select{
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+input:focus, select:focus{
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.25);
+}
+button{
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 12px 14px;
+  transition: transform .06s ease, opacity .15s ease;
+}
+button:hover{
+  transform: translateY(-1px);
+  opacity: .95;
+}
+
+/* Daha ferah yerleşim */
+.container{
+  max-width: 820px; /* 720'den biraz büyütüldü */
+}
+
+/* Durum kutusunu belirginleştir */
+.status{
+  background: linear-gradient(180deg,#12161f 0%, #0f141f 100%);
+  border: 1px dashed #2b3344;
+}
+
+/* Küçük ekran iyileştirmeleri */
+@media (min-width: 720px){
+  form.card{
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+  }
+  form.card label:nth-child(1){ grid-column: 1 / 2; }
+  form.card label:nth-child(2){ grid-column: 2 / 3; }
+  form.card label:nth-child(3){ grid-column: 1 / 3; }
+  form.card button{ grid-column: 1 / 3; }
+}
+/* --- ViMove tweaks (force) --- */
+.hero { padding-top: 12px !important; padding-bottom: 14px !important; }
+.hero .title { margin-top: 0 !important; margin-bottom: 4px !important; }
+.hero p { margin-top: 6px !important; margin-bottom: 8px !important; line-height: 1.5 !important; }
+
+/* Kopyalanabilir ve KIRMIZI mail linkleri */
+.contacts { user-select: text !important; }
+.contacts a {
+  color: #ef4444 !important;   /* kırmızı */
+  text-decoration: none !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  -webkit-user-select: text !important;
+}
+.contacts a:hover { text-decoration: underline !important; }
+
+

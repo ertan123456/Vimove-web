@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ViMove – Oyun</title>
+  <style>
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; background:#0b0d10; color:#eee; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 16px; }
+    .row { display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap; }
+    video, canvas { width: 640px; height: 480px; background:#111; border-radius: 12px; display:block; }
+    .panel { flex:1; min-width:260px; background:#111; border:1px solid #222; border-radius:12px; padding:12px; }
+    button { padding:10px 14px; border-radius:10px; border:1px solid #333; background:#1b1f24; color:#fff; cursor:pointer; }
+    .ok { color:#82f58f; } .warn { color:#ffde7a; } .bad { color:#ff7a7a; }
+    .pill { display:inline-block; padding:4px 8px; border:1px solid #333; border-radius:999px; margin-right:6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>ViMove – Kameralı Oyun (Web)</h1>
+    <p>“Başlat”a basınca kamera izni isteyecek. <b>HTTPS</b> üzerinde çalıştırın (Render varsayılan HTTPS sunar).</p>
+    <div class="row">
+      <div>
+        <video id="video" playsinline autoplay muted></video>
+        <canvas id="overlay"></canvas>
+        <div style="margin-top:10px; display:flex; gap:8px;">
+          <button id="btnStart">Başlat</button>
+          <span id="status" class="pill warn">Hazır</span>
+          <span id="fps" class="pill">FPS: –</span>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Durum</h3>
+        <p id="info">Ellerini kadraja getir.</p>
+        <ul>
+          <li>Sol el açık/kapalı: <b id="Lstate">–</b></li>
+          <li>Sağ el açık/kapalı: <b id="Rstate">–</b></li>
+        </ul>
+        <p class="warn">Not: Açık/kapalı algısı işaret parmağı ucu (LM 8) ile bilek (LM 0) mesafesine göre yapılır.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/static/game/game.js"></script>
+</body>
+</html>

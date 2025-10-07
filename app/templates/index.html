@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ViMove</title>
+  <link rel="stylesheet" href="/static/styles.css?v=4" />
+</head>
+<body>
+  <div class="container">
+    <section class="hero card">
+      <h2 class="title">ViMove</h2>
+      <p>
+    ViMove is a health application developed by two high school students that integrates artificial intelligence and image processing to make the treatment processes for the physiological ailments of elderly individuals much more accessible and practical. Users enter different parameters such as age, gender, and illness, and the application creates appropriate exercise sets for their ailments, tracking the execution of the exercises through the application. The current demo version focuses on Parkinson's disease.
+      </p>
+      <div class="contacts">
+        <span>For inquiries:</span>
+        <a href="mailto:erdemertan08@gmail.com">erdemertan08@gmail.com</a> ·
+        <a href="mailto:oguzcetinkaya1903@gmail.com">oguzcetinkaya1903@gmail.com</a>
+      </div>
+
+   </section>
+    <h1>ViMove</h1>
+    <p class="muted">Select age, gender, and disease. Only the  <b>Parkinson's option</b> is available during the demo process.</p>
+
+    <form method="POST" action="/start" class="card">
+      <label>Age
+        <input type="number" name="age" min="40" max="120" required />
+      </label>
+
+      <label>Gender
+        <select name="gender" required>
+          <option value="" disabled selected>Select</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label>Disease
+        <select name="disease" required>
+          <option value="" disabled selected>Select</option>
+          <option value="parkinson">Parkinson</option>
+        </select>
+      </label>
+
+      <button type="submit">Start</button>
+    </form>
+
+    {% if running %}
+      <div class="status running">The application is currently <b>running</b>.</div>
+      <form method="POST" action="/stop">
+        <button class="danger" type="submit">Stop</button>
+      </form>
+    {% else %}
+      <div class="status"> <b></b></div>
+    {% endif %}
+
+    {% if last %}
+      <h3>Last Selections</h3>
+      <pre class="card small">{{ last_json or '' }}</pre>
+    {% endif %}
+  </div>
+</body>
+</html>
