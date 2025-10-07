@@ -315,10 +315,10 @@ function tick() {
         const acik = elAcikMi(lm);
         const kapali = !acik;
 
-        if (ad.includes("Left Hand") && handed === "Right") { // ayna düzeltmesi
+        if (ad.includes("Left Hand") && handed === "Left") { // ayna düzeltmesi
           if (!parmak_acik_sag && acik) parmak_acik_sag = true;
           else if (parmak_acik_sag && kapali) { parmak_acik_sag = false; hareket_basarili = true; }
-        } else if (ad.includes("Right Hand") && handed === "Left") {
+        } else if (ad.includes("Right Hand") && handed === "Right") {
           if (!parmak_acik_sol && acik) parmak_acik_sol = true;
           else if (parmak_acik_sol && kapali) { parmak_acik_sol = false; hareket_basarili = true; }
         }
