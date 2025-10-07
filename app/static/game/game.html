@@ -23,9 +23,9 @@
 </head>
 <body>
   <div class="wrap">
-    <h1>ViMove – Kameralı Oyun (Web)</h1>
+    <h1>ViMove(Web)</h1>
     <div class="row" style="margin-bottom:10px">
-      <button id="btnStart">Kamerayı Başlat</button>
+      <button id="btnStart">Turn on the camera</button>
       <span id="status" class="pill warn">Hazır</span>
       <span id="fps" class="pill">FPS: –</span>
     </div>
@@ -37,23 +37,23 @@
       </div>
 
       <div class="panel">
-        <h3 style="margin:6px 0 8px">Egzersiz Planı</h3>
-        <p class="muted">Hedefe ulaşınca otomatik sonraki egzersize geçilir.</p>
+        <h3 style="margin:6px 0 8px">Exercise Plan</h3>
+        <p class="muted"></p>
 
         <div style="margin:10px 0 12px">
-          <div><b>Şu an:</b> <span id="exerciseName">–</span></div>
+          <div><b>Now:</b> <span id="exerciseName">–</span></div>
           <div class="progress" style="margin-top:8px"><div id="bar" class="bar"></div></div>
           <div class="row" style="margin-top:8px">
-            <span>Tekrar: <b id="reps">0</b>/<b id="target">0</b></span>
-            <button id="btnReset">Sıfırla</button>
+            <span>Set: <b id="reps">0</b>/<b id="target">0</b></span>
+            <button id="btnReset">Reset</button>
           </div>
-          <div id="hint" class="muted" style="margin-top:6px">İpucu: “açık → kapalı” hareketi 1 tekrar sayılır.</div>
+          <div id="hint" class="muted" style="margin-top:6px"></div>
         </div>
 
         <ul id="planList" class="list"></ul>
         <hr style="border-color:#222; margin:12px 0">
-        <div><b>Sol el:</b> <span id="Lstate">–</span> &nbsp; <b>Sağ el:</b> <span id="Rstate">–</span></div>
-        <div id="info" style="margin-top:8px">“Kamerayı Başlat” butonuna bas ve izni ver.</div>
+        <div><b>Right Hand:</b> <span id="Lstate">–</span> &nbsp; <b>Left Hand:</b> <span id="Rstate">–</span></div>
+        <div id="info" style="margin-top:8px">Press the “Turn on camera” button and grant permission</div>
         <div id="diag" class="muted" style="white-space:pre-wrap; margin-top:6px"></div>
       </div>
     </div>
