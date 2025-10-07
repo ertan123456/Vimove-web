@@ -42,14 +42,12 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 # Çok sert yapmıyoruz; aksi halde model/WASM dosyaları bloklanabilir.
 # ---------------------------------------------------------------------
 @app.middleware("http")
-async def add_security_headers(request: Request, call_next):
+async def add_security_headers(request, call_next):
     resp = await call_next(request)
-    # Oyun için gerekli kaynaklar:
-    # - jsdelivr CDN (tasks-vision)
-    # - storage.googleapis.com (mediapipe model .task dosyaları)
-    csp = (
+    resp.headers["Content-Security-Policy"] = (
         "default-src 'self'; "
-        "script-src 'self' https://cdn.jsdelivr.net; "
+        # WASM için 'unsafe-eval' / 'wasm-unsafe-eval' ve blob: ekledik
+        "script-src 'self' https://cdn.jsdelivr.net 'unsafe-eval' 'wasm-unsafe-eval' blob:; "
         "connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com; "
         "img-src 'self' data: blob:; "
         "style-src 'self' 'unsafe-inline'; "
@@ -58,8 +56,6 @@ async def add_security_headers(request: Request, call_next):
         "frame-ancestors 'self'; "
         "object-src 'none';"
     )
-    resp.headers.setdefault("Content-Security-Policy", csp)
-    # İsteğe bağlı diğer başlıklar
     resp.headers.setdefault("X-Content-Type-Options", "nosniff")
     resp.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
     return resp
